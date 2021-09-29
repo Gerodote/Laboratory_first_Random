@@ -39,7 +39,7 @@ namespace myr {
             return X;
         }
         inline bool operator== (RandomEighth const& rval) const {
-            return ((*first_) == (*rval.first_)) && ((*second_) == (*rval.second_));
+            return ((*first_) == (*rval.first_)) && ((*second_) == (*rval.second_)) && (min_ == rval.min_) && (max_ == rval.max_);
         }
         inline bool operator!=(RandomEighth const& rval) const {
             return !(*this == rval);

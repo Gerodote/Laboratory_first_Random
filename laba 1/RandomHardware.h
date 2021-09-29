@@ -30,14 +30,14 @@ namespace myr {
             return min_;
         }
         inline bool operator==(RandomHardware const& rval) const {
-            return 0;
+            return true;
         }
         inline bool operator!=(RandomHardware const& rval) const {
-            return 1;
+            return false;
         }
         inline bool operator==(IRandomGenerator const& rval) const {
             if (typeid(*this) == typeid(rval)) {
-                return (*this) == (dynamic_cast<RandomHardware const&>(rval));;
+                return true;
             }
             else {
                 return false;

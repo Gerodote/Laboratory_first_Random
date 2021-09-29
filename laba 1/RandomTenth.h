@@ -37,7 +37,7 @@ namespace myr {
             return X;
         }
         inline bool operator== (RandomTenth const& rval) const {
-            return ((*first_) == (*rval.first_)) && ((*second_) == (*rval.second_));
+            return ((*first_) == (*rval.first_)) && ((*second_) == (*rval.second_)) && (a_ == rval.a_) && (max_ == rval.max_);
         }
         inline bool operator!=(RandomTenth const& rval) const {
             return !(*this == rval);

@@ -27,7 +27,7 @@ namespace myr {
             return tmp < 0 ? 0 : tmp;
         }
         inline bool operator== (RandomNinth const& rval) const {
-            return ((*gen_) == (*rval.gen_));
+            return ((*gen_) == (*rval.gen_)) && (scale_ == rval.scale_) && (max_ == rval.max_);
         }
         inline bool operator!=(RandomNinth const& rval) const {
             return !(*this == rval);
@@ -57,6 +57,9 @@ namespace myr {
         }
         inline void setMax(double const& new_max) {
             max_ = new_max;
+        }
+        inline void setScale(double const& new_scale) {
+            scale_ = new_scale;
         }
 
 
