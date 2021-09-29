@@ -145,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContainerTransform.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="IRandomGenerator.h" />
     <ClInclude Include="myConsoleProcedures.h" />
     <ClInclude Include="myrRandom.h" />
