@@ -17,11 +17,11 @@ namespace myr {
         )
             : first_(first), second_(second), m_(m), m1_(m1) {
         }
-        inline ~RandomFifth() {
+        inline ~RandomFifth() override {
             delete first_;
             delete second_;
         }
-        virtual inline double operator() () const
+        virtual inline double operator() () const override
         {
             return static_cast<double>((static_cast<int_fast64_t>(((*first_)() - first_->min()) / (first_->max() - first_->min()) *m_)   + static_cast<int_fast64_t>(((*second_)() - second_->min()) / (second_->max() - second_->min()) *m1_) ) % m_ ) / m_;
         }
@@ -31,7 +31,7 @@ namespace myr {
         inline bool operator!=(RandomFifth const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomFifth const&>(rval));;
             }
@@ -39,7 +39,7 @@ namespace myr {
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setRandomGenerator1(IRandomGenerator * newrnd) {
@@ -60,10 +60,10 @@ namespace myr {
         inline uint_fast64_t getM1() const {
             return m1_;
         }
-        inline const double min() const {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const {
+        inline const double max() const override {
             return max_;
         }
 

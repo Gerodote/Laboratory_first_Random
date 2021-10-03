@@ -17,12 +17,12 @@ namespace myr {
         )
             : first_(first), second_(second), a_(a > 1 ? a : 35), max_(max) {
         }
-        inline ~RandomTenth() {
+        inline ~RandomTenth() override {
             delete first_;
             delete second_;
         }
 
-        virtual inline double operator() () const
+        virtual inline double operator() () const override
         {
             double Y;
             double X;
@@ -42,7 +42,7 @@ namespace myr {
         inline bool operator!=(RandomTenth const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomTenth const&>(rval));;
             }
@@ -50,7 +50,7 @@ namespace myr {
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setRandomGenerator1(IRandomGenerator* newrnd) {
@@ -65,10 +65,10 @@ namespace myr {
                 second_ = newrnd;
             }
         }
-        inline const double min() const {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const {
+        inline const double max() const override {
             return max_;
         }
         inline void setMax(double const& new_min) {

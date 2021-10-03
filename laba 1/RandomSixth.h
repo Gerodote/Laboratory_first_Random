@@ -11,10 +11,10 @@ namespace myr {
         )
             : gen_(gen) {
         }
-        inline ~RandomSixth() {
+        inline ~RandomSixth() override {
             delete gen_;
         }
-        virtual inline double operator() () const
+        virtual inline double operator() () const override
         {
             double tmp;
             do {
@@ -31,7 +31,7 @@ namespace myr {
         inline bool operator!=(RandomSixth const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomSixth const&>(rval));;
             }
@@ -39,7 +39,7 @@ namespace myr {
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setRandomGenerator(IRandomGenerator* newrnd) {
@@ -48,10 +48,10 @@ namespace myr {
                 gen_ = newrnd;
             }
         }
-        inline const double min() const {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const {
+        inline const double max() const override {
             return max_;
         }
 

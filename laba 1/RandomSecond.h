@@ -20,8 +20,8 @@ public:
             uint_fast64_t seed = static_cast<uint_fast64_t>(static_cast<double>(999999937) * (static_cast<double>((RandomHardware())() - RandomHardware().min()) / (RandomHardware().max() - RandomHardware().min())))
         )
             : d_(d), a_(a), c_(c), m_(m), seed_(seed) {}
-        inline ~RandomSecond() {}
-        virtual inline double operator() () const
+        inline ~RandomSecond() override {}
+        virtual inline double operator() () const override
         {
             seed_ = static_cast<uint_fast64_t>((((((((d_ * seed_) % m_) * seed_) % m_) + ((a_ * seed_) % m_)) % m_)+ c_) % m_);
             return (static_cast<double>(seed_) / static_cast<double>(m_));
@@ -32,7 +32,7 @@ public:
         inline bool operator!=(RandomSecond const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomSecond const&>(rval));
             }
@@ -40,7 +40,7 @@ public:
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setSeed(uint_fast64_t const& newseed) {
@@ -61,10 +61,10 @@ public:
         inline uint_fast64_t getM() const {
             return m_;
         }
-        inline const double min() const  {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const  {
+        inline const double max() const override {
             return max_;
         }
  

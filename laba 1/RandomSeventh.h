@@ -16,12 +16,12 @@ namespace myr {
         )
             : first_(first), second_(second), min_(min), max_(max), isEvenExecution_(false), secondValue_(0) {
         }
-        inline ~RandomSeventh() {
+        inline ~RandomSeventh() override {
             delete first_;
             delete second_;
         }
         
-        virtual inline double operator() () const
+        virtual inline double operator() () const override
         {
             if (!isEvenExecution_ || (secondValue_ < min_) || (secondValue_ > max_)) {
                 double S;
@@ -49,7 +49,7 @@ namespace myr {
         inline bool operator!=(RandomSeventh const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomSeventh const&>(rval));;
             }
@@ -57,7 +57,7 @@ namespace myr {
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setRandomGenerator1(IRandomGenerator* newrnd) {
@@ -72,10 +72,10 @@ namespace myr {
                 second_ = newrnd;
             }
         }
-        inline const double min() const {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const {
+        inline const double max() const override {
             return max_;
         }
         inline void setMin(double const& new_min) {

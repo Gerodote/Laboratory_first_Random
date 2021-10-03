@@ -40,13 +40,13 @@ namespace myr {
             isAllowableToUse = const_cast<const bool*>(new bool(1));
             table_ = const_cast<uint_fast64_t const *>(ar);
         }
-        inline ~RandomFourth() {
+        inline ~RandomFourth() override {
             if (isAllowableToUse) {
                 delete isAllowableToUse;
             }
             delete[] table_;
         }
-        virtual inline double operator() () const
+        virtual inline double operator() () const override
         {
             if (isAllowableToUse) {
                 if (seed_ == 0)
@@ -66,7 +66,7 @@ namespace myr {
         inline bool operator!=(RandomFourth const& rval) const {
             return !(*this == rval);
         }
-        inline bool operator==(IRandomGenerator const& rval) const {
+        inline bool operator==(IRandomGenerator const& rval) const override {
             if (typeid(*this) == typeid(rval)) {
                 return (*this) == (dynamic_cast<RandomFourth const&>(rval));;
             }
@@ -74,7 +74,7 @@ namespace myr {
                 return false;
             }
         }
-        inline bool operator!= (IRandomGenerator const& rval) const {
+        inline bool operator!= (IRandomGenerator const& rval) const override {
             return !((*this) == rval);
         }
         inline void setSeed(uint_fast64_t const& newseed) {
@@ -92,10 +92,10 @@ namespace myr {
         inline uint_fast64_t getM() const {
             return m_;
         }
-        inline const double min() const {
+        inline const double min() const override {
             return min_;
         }
-        inline const double max() const {
+        inline const double max() const override {
             return max_;
         }
 
