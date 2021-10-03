@@ -16,7 +16,7 @@ namespace myr {
             uint_fast64_t seed = static_cast<uint_fast64_t>(static_cast<double>(1279) * (static_cast<double>((RandomHardware())() - RandomHardware().min()) / (RandomHardware().max() - RandomHardware().min())))
         )
             : a_(a), c_(c), m_(m), seed_(seed) {
-            uint_fast64_t* ar = new uint_fast64_t[m];
+            uint_fast64_t* ar = static_cast<uint_fast64_t*>(new uint_fast64_t[static_cast<size_t>(m)]);
             ar[0] = 0;
             bool not_found;
             int_fast64_t x = static_cast<int_fast64_t>(m);
