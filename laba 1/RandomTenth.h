@@ -29,7 +29,7 @@ namespace myr {
             do {
                 do {
                     do {
-                        Y = std::tan(std::_Pi * ((*first_)() - first_->min()) / (first_->max() - first_->min()));
+                        Y = std::tan(std::acos(-1) * ((*first_)() - first_->min()) / (first_->max() - first_->min()));
                         X = std::sqrt(2 * a_ - 1) * Y + a_ - 1;
                     } while (X <= 0);
                 } while ((((*second_)() - second_->min()) / (second_->max() - second_->min())) > ((1+ Y*Y)*std::exp((a_-1)*std::log(X/(a_-1))-std::sqrt(2*a_ -1)*Y)));
